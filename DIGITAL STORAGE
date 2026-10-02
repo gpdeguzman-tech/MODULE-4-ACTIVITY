@@ -1,0 +1,29 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    long long bytes;
+
+    cout << "Enter file size in bytes: ";
+    cin >> bytes;
+
+    double kb = bytes / 1024.0;
+    double mb = kb / 1024.0;
+    double gb = mb / 1024.0;
+
+    long long wholeMB = (long long)mb;
+
+    cout << fixed;
+
+    cout << setprecision(2);
+    cout << "\nKB: " << kb << endl;
+    cout << "MB: " << mb << endl;
+
+    cout << setprecision(4);
+    cout << "GB: " << gb << endl;
+
+    cout << "Whole MB: " << wholeMB << endl;
+
+    return 0;
+}
