@@ -1,0 +1,33 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double quiz, lab, project, exam;
+
+    cout << "Enter quiz score: ";
+    cin >> quiz;
+
+    cout << "Enter laboratory score: ";
+    cin >> lab;
+
+    cout << "Enter project score: ";
+    cin >> project;
+
+    cout << "Enter examination score: ";
+    cin >> exam;
+
+    double weightedGrade =
+        (quiz * 0.20) +
+        (lab * 0.25) +
+        (project * 0.25) +
+        (exam * 0.30);
+
+    cout << fixed << setprecision(2);
+    cout << "\nWeighted Grade: " << weightedGrade << endl;
+    cout << "Rounded Grade: " << round(weightedGrade) << endl;
+    cout << "Cast to int: " << (int)weightedGrade << endl;
+
+    return 0;
+}
