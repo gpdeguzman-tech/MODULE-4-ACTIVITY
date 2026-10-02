@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    string productName;
+    double unitPrice, discountPercent, shippingFee;
+    int quantity, unitsPerBox;
+
+    cout << "Enter product name: ";
+    getline(cin, productName);
+
+    cout << "Enter unit price: ";
+    cin >> unitPrice;
+
+    cout << "Enter quantity: ";
+    cin >> quantity;
+
+    cout << "Enter discount percentage: ";
+    cin >> discountPercent;
+
+    cout << "Enter shipping fee per box: ";
+    cin >> shippingFee;
+
+    cout << "Enter units per box: ";
+    cin >> unitsPerBox;
+
+    double subtotal = unitPrice * quantity;
+
+    double discount =
+        subtotal * (discountPercent / 100.0);
+
+    double merchandiseTotal =
+        subtotal - discount;
+
+    double exactBoxes =
+        static_cast<double>(quantity) / unitsPerBox;
+
+    int boxesRequired =
+        (int)ceil(exactBoxes);
+
+    double shippingTotal =
+        boxesRequired * shippingFee;
+
+    double amountDue =
+        merchandiseTotal + shippingTotal;
+
+    cout << fixed << setprecision(2);
+
+    cout << "\n\tONLINE STORE RECEIPT\n";
+    cout << "\tProduct: " << productName << endl;
+    cout << "\tSubtotal: " << subtotal << endl;
+    cout << "\tDiscount: " << discount << endl;
+    cout << "\tMerchandise Total: "
+         << merchandiseTotal << endl;
+    cout << "\tExact Boxes: " << exactBoxes << endl;
+    cout << "\tBoxes Required: "
+         << boxesRequired << endl;
+    cout << "\tShipping: " << shippingTotal << endl;
+    cout << "\tAmount Due: " << amountDue << endl;
+
+    return 0;
+}
