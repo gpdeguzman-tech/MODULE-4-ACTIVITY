@@ -1,0 +1,90 @@
+#include <iomanip>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int size1, size2;
+
+    cout << "======================================\n";
+    cout << "             FIRST ARRAY              \n";
+    cout << "======================================\n";
+    cout << "Enter the size of the First Array:  \n";
+    cin >> size1;
+    int* first = new int[size1];
+    for (int i = 0; i < size1; ++i) {
+        cout << "Enter element " << i + 1 << " of the first array: ";
+        cin >> first[i];
+    }
+
+    cout << "======================================\n";
+    cout << "             SECOND ARRAY             \n";
+    cout << "======================================\n";
+    cout << "Enter the size of the Second Array:  \n";
+    cin >> size2;
+    int* second = new int[size2];
+    for (int i = 0; i < size2; ++i) {
+        cout << "Enter element " << i + 1 << " of the second array: ";
+        cin >> second[i];
+    }
+
+    if (size1 != size2) {
+        cout << "\nTHE ARRAYS MUST HAVE THE SAME SIZE\n";
+        delete[] first;
+        delete[] second;
+        return 0;
+    }
+
+    long long* sums = new long long[size1];
+    int* maximums = new int[size1];
+    long long total1 = 0;
+    long long total2 = 0;
+
+    for (int i = 0; i < size1; ++i) {
+        sums[i] = static_cast<long long>(first[i]) + second[i];
+        maximums[i] = (first[i] > second[i]) ? first[i] : second[i];
+        total1 += first[i];
+        total2 += second[i];
+    }
+
+    cout << "\n========== ARRAY RESULTS ==========\n";
+    cout << left << setw(8) << "Index"
+         << setw(12) << "Array 1"
+         << setw(12) << "Array 2"
+         << setw(12) << "Sum"
+         << "Maximum\n";
+    cout << "=====================================\n";
+
+    for (int i = 0; i < size1; ++i) {
+        cout << left << setw(8) << i + 1
+             << setw(12) << first[i]
+             << setw(12) << second[i]
+             << setw(12) << sums[i]
+             << maximums[i] << '\n';
+    }
+
+    if (size1 > 0) {
+        int minimum1 = first[0];
+        int minimum2 = second[0];
+        for (int i = 1; i < size1; ++i) {
+            if (first[i] < minimum1) minimum1 = first[i];
+            if (second[i] < minimum2) minimum2 = second[i];
+        }
+
+        cout << "\n========== TOTALS & MINIMUMS ==========";
+        cout << "\nTotal of Array 1: " << total1;
+        cout << "\nTotal of Array 2: " << total2;
+        cout << "\nTotal of both arrays: " << total1 + total2;
+        cout << "\nMinimum in Array 1: " << minimum1;
+        cout << "\nMinimum in Array 2: " << minimum2;
+        cout << "\nSum of the minimums: " << minimum1 + minimum2 << '\n';
+    } else {
+        cout << "\nThe arrays are empty, so minimums cannot be found.\n";
+    }
+
+    delete[] first;
+    delete[] second;
+    delete[] sums;
+    delete[] maximums;
+    return 0;
+}
